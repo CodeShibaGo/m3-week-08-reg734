@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube 影片搜尋</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Fancybox CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>
+    <!-- Fancybox JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>搜尋 YouTube 影片</h1>
+        <form id="searchForm" class="search-container">
+            <input type="text" id="searchInput" name="search" placeholder="請輸入搜尋關鍵字...">
+            <button type="submit" id="searchButton">搜尋</button>
+        </form>
+        <div id="results" class="results-container"></div>
+        <div class="pagination">
+            <button id="prevPage" class="page-button" disabled>上一頁</button>
+            <span id="pageInfo">第 1 頁</span>
+            <button id="nextPage" class="page-button" disabled>下一頁</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
