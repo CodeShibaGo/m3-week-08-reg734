@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>匯率轉換計算器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>匯率轉換計算器</h1>
+        <p class="subtitle">選擇貨幣和金額以獲取匯率</p>
+        
+        <div class="exchange-container">
+            <div class="currency-box">
+                <select id="fromCurrency" class="currency-select">
+                    <!-- 貨幣選項將由 JavaScript 動態生成 -->
+                </select>
+                <input type="number" id="fromAmount" class="amount-input" value="1" min="0">
+            </div>
+
+            <button id="swapButton" class="swap-button">交換</button>
+
+            <div class="currency-box">
+                <select id="toCurrency" class="currency-select">
+                    <!-- 貨幣選項將由 JavaScript 動態生成 -->
+                </select>
+                <input type="number" id="toAmount" class="amount-input" value="1" min="0" readonly>
+            </div>
+        </div>
+
+        <div class="rate-info">
+            <p>匯率: <span id="rate">1</span></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
