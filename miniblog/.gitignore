@@ -1,0 +1,44 @@
+# 📁 PyCharm 設定檔（不建議加入版本控制）
+.idea/
+
+# 🔒 機密與環境變數檔
+.env
+*.env
+
+# 🐍 Python 暫存與編譯檔案
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*$py.class
+
+# 🛠 虛擬環境
+.venv/
+venv/
+env/
+ENV/
+
+# 📦 pip 安裝產物
+*.egg-info/
+dist/
+build/
+pip-wheel-metadata/
+
+# 📄 SQLite 開發資料庫（選擇性）
+*.db
+*.sqlite3
+
+# 🧪 測試快取
+.pytest_cache/
+.coverage
+
+# 📑 Alembic 遷移快取（建議保留遷移版本檔）
+migrations/__pycache__/
+
+# 📄 日誌與快取檔案
+*.log
+*.tmp
+*.cache
+
+# ⚙️ macOS 系統檔案
+.DS_Store

@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, jsonify
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, EditProfileForm, EmptyForm, PostForm, ResetPasswordRequestForm, ResetPasswordForm
 from flask_login import  login_user, logout_user, current_user, login_required
@@ -11,6 +11,8 @@ from datetime import datetime, timezone
 from flask_wtf.csrf import validate_csrf, CSRFError
 from app.models import Post
 from app.email import send_password_reset_email
+from langdetect import detect, LangDetectException
+from app.translate import translate
 
 
 
@@ -20,7 +22,12 @@ from app.email import send_password_reset_email
 def index():
     form = PostForm()
     if form.validate_on_submit():
-        post = Post(body=form.post.data, author=current_user)
+        try:
+            language = detect(form.post.data)
+        except LangDetectException:
+            language = ''
+        post = Post(body=form.post.data, author=current_user,
+                    language=language)
         db.session.add(post)
         db.session.commit()
         flash('你的貼文現在已發布！')
@@ -316,6 +323,19 @@ def unfollow(username):
         return redirect(url_for('user', username=username))
     else:
         return redirect(url_for('index'))
+    
+@app.route('/translate', methods=['POST'])
+def translate_text():
+    data = request.get_json()
+    if not data or 'text' not in data or 'source_language' not in data or 'dest_language' not in data:
+        return jsonify({'error': 'Invalid request'}), 400
+
+    text = data['text']
+    source_language = data['source_language']
+    dest_language = data['dest_language']
+
+    translated_text = translate(text, source_language, dest_language)
+    return jsonify({'text': translated_text})
     
 
 

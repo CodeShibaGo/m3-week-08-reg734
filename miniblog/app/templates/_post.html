@@ -5,7 +5,11 @@
             <a href="{{ url_for('user', username=post.author.username) }}">
                 {{post.author.username}}
             </a>
-            說 {{moment(post.timestamp).fromNow() }}：<br>{{ post.body }}
+            說 {{moment(post.timestamp).fromNow() }}：<br><span id="post{{ post.id}}">{{ post.body }}</span>
+
+            <span id="translation{{ post.id }}">
+                <a href="javascript:translate('post{{ post.id }}','translation{{ post.id}}','{{ post.language }}','{{ g.locale}}');">{{ _('Translate') }}</a>
+            </span>
         </td>
     </tr>
 </table>

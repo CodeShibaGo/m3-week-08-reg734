@@ -62,5 +62,37 @@
     </script>
     {{ moment.include_moment() }}
     {{ moment.locale('zh-tw') }}
+    <script>
+
+  async function translate(sourceElem, destElem, sourceLang, destLang) {
+    document.getElementById(destElem).innerHTML =
+      '<img src="{{ url_for('static', filename='loading.gif') }}">';
+    try {
+      const response = await fetch('/translate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+          'X-CSRFToken': '{{ csrf_token() }}' // 添加 CSRF token
+        },
+        body: JSON.stringify({
+          text: document.getElementById(sourceElem).innerText,
+          source_language: sourceLang || 'en', // 預設為英文
+          dest_language: destLang || 'zh-Hant' // 預設為繁體中文
+        })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      document.getElementById(destElem).innerText = data.text;
+    } catch (error) {
+      console.error('Error:', error);
+      document.getElementById(destElem).innerText = '翻譯失敗：' + error.message;
+    }
+  }
+</script>
   </body>
 </html>

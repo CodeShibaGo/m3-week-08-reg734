@@ -6,17 +6,19 @@ from sqlalchemy import text
 from app import db
 import sqlalchemy as sa
 from app.models import User
+from flask_babel import _, lazy_gettext as _l
+
 
 
 class LoginForm (FlaskForm):
-    username = StringField('使用者名稱', validators=[DataRequired()])
-    password = PasswordField('密碼', validators=[DataRequired()])
-    remember_me = BooleanField('記住我')
-    submit = SubmitField('登入')
+    username = StringField(_l('使用者名稱'), validators=[DataRequired()])
+    password = PasswordField(_l('密碼'), validators=[DataRequired()])
+    remember_me = BooleanField(_l('記住我'))
+    submit = SubmitField(_l('登入'))
 
 class ResetPasswordRequestForm(FlaskForm):
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    submit = SubmitField('請求重設密碼')
+    email = StringField(_l('Email'), validators=[DataRequired(), Email()])
+    submit = SubmitField(_l('請求重設密碼'))
 
 class ResetPasswordForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
