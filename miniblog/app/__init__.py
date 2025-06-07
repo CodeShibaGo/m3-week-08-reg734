@@ -44,4 +44,7 @@ moment = Moment(app)
 #         mail_handler.setLevel(logging.ERROR)
 #         app.logger.addHandler(mail_handler)
 
-from app import routes, models, errors
+from app.errors import bp as errors_bp
+app.register_blueprint(errors_bp)
+
+from app import routes, models
