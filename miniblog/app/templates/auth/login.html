@@ -5,9 +5,9 @@
 {% block content %}
     <h1>登入</h1>
     {{ wtf.quick_form(form) }}
-    <p>新使用者？ <a href="{{ url_for('register') }}">點擊註冊！</a></p>
+    <p>新使用者？ <a href="{{ url_for('auth.register') }}">點擊註冊！</a></p>
     <p>
       忘記你的密碼了嗎？
-        <a href="{{ url_for('reset_password_request') }}">點擊這裡重設</a>
+        <a href="{{ url_for('auth.reset_password_request') }}">點擊這裡重設</a>
     </p>
 {% endblock %}
