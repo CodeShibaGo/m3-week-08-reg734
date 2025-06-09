@@ -56,7 +56,7 @@ def explore():
 
     # Raw SQL 查詢含 JOIN user
     sql = text("""
-        SELECT post.id AS post_id, post.body, post.timestamp, post.user_id,
+        SELECT post.id AS post_id, post.body, post.timestamp, post.user_id,post.language,
                user.id AS user_id, user.username, user.email
         FROM post
         JOIN user ON post.user_id = user.id
